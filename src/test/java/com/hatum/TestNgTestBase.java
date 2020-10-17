@@ -6,6 +6,7 @@ import java.net.URL;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.Capabilities;
 
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
@@ -36,9 +37,12 @@ public class TestNgTestBase {
   @BeforeMethod
   public void initWebDriver() {
     driver = WebDriverPool.DEFAULT.getDriver(gridHubUrl, capabilities);
+
+
+
   }
 
-  @AfterSuite(alwaysRun = true)
+  @AfterSuite(alwaysRun = false)
   public void tearDown() {
     WebDriverPool.DEFAULT.dismissAll();
   }

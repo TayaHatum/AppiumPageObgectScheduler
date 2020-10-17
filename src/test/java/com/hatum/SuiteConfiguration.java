@@ -2,10 +2,13 @@ package com.hatum;
 
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Platform;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 /**
@@ -43,7 +46,11 @@ public class SuiteConfiguration {
         capabilities.setCapability(name, value);
       }
     }
-
+    ChromeOptions options = new ChromeOptions();
+    Map<String, Object> prefs = new HashMap<>();
+    prefs.put("intl.accept_languages", "ru-RU");
+    options.setExperimentalOption("prefs", prefs);
+    capabilities.setCapability(ChromeOptions.CAPABILITY, options);
     return capabilities;
   }
 
